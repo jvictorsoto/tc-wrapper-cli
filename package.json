@@ -1,0 +1,25 @@
+{
+  "name": "tccli",
+  "version": "0.0.1",
+  "description": "NodeJS cli for tc-wrapper (a library for traffic control on linux)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvictorsoto/tc-wrapper-cli.git"
+  },
+  "keywords": [
+    "tc",
+    "traffic control",
+    "traffic shapping",
+    "netem"
+  ],
+  "author": "J. Victor Soto",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jvictorsoto/tc-wrapper-cli/issues"
+  },
+  "homepage": "https://github.com/jvictorsoto/tc-wrapper-cli#readme"
+}
