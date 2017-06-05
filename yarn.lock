@@ -2419,9 +2419,9 @@ tar@^2.2.1:
     fstream "^1.0.2"
     inherits "2"
 
-tc-wrapper@^1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/tc-wrapper/-/tc-wrapper-1.0.4.tgz#20bd2a2a0b17525049fffc402d9811bbe8c88c7a"
+tc-wrapper@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/tc-wrapper/-/tc-wrapper-1.0.6.tgz#1950d3fb5abb1db61534a981b51e450e0c049431"
   dependencies:
     bluebird "^3.5.0"
     child-process-promise "^2.2.1"
