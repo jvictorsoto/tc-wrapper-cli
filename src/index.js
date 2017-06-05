@@ -24,11 +24,12 @@ commander
     }
   })
   .usage('tccli <operation> <iface> [options]')
-  .option('-d --direction [direction]', 'outgoing', /(outgoing|incoming)/)
-  .option('-n --network [network]', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/)
+  .option('-d --direction [direction]', 'Rule traffic direction. Allowed outgoing or incoming.', 'outgoing',
+    /(outgoing|incoming)/)
+  .option('-n --network [network]', 'Network including mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/)
   .option('--srcPort [port]')
   .option('--dstPort [port]')
-  .option('-p --protocol [protocol]', 'ip', /ip/)
+  .option('-p --protocol [protocol]', 'Protocol of rules. Only supported IPv4 right now.', 'ip', /ip/)
   .option('--delay [time]')
   .option('--jitter [time]')
   .option('--loss [percentage]')
