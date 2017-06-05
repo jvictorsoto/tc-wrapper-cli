@@ -24,7 +24,7 @@
     "bluebird": "^3.5.0",
     "commander": "^2.9.0",
     "debug": "^2.6.8",
-    "tc-wrapper": "^1.0.3"
+    "tc-wrapper": "^1.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
