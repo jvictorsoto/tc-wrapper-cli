@@ -12,9 +12,29 @@ npm install -g tccli
 
 ## Usage
 
-The cli has three major commands ```del```, ```get``` and ```set```, for deleting, fetching and setting tc rules.
+### Help
+```sh
+  Usage: tccli <operation> <iface> [options]
 
-There is also an ```add``` command to make easier add more rules to existing ones, this command will running get, del and set under the hood as tc-wrapper lib dont support add.
+  Options:
+
+    -h, --help                  output usage information
+    -V, --version               output the version number
+    -d --direction [direction]  Rule traffic direction. Allowed outgoing or incoming.
+    -n --network [network]      Network including mask
+    --srcPort [port]            Destination port.
+    --dstPort [port]            Source port.
+    -p --protocol [protocol]    Protocol of rules. Only supported IPv4 right now.
+    --delay [time]              Delay including unit. Ex: 10ms
+    --jitter [time]             Delay variation including unit. Ex: 10ms
+    --loss [percentage]         Packet loss including unit. Ex: 5%
+    --corrupt [percentage]      Packet corruption including unit. Ex: 1%
+    --rate [bandwidth]          Bandwith limit including unit. Ex: 10Mbit
+```
+
+The cli has three major operations: ```del```, ```get``` and ```set```, for deleting, fetching and setting tc rules.
+
+There is also an ```add``` command to make easier add more rules to existing ones, this command will running get and set under the hood as tc-wrapper lib dont support add.
 
 **Allowed targeting**
 
@@ -105,6 +125,32 @@ tccli add eth0 --network 192.168.1.1/32 --corrupt 2%
 
 ``` sh
 tccli add eth0 --network 10.10.10.0/28 --srcPort 80 --corrupt 2% --direction incoming
+```
+
+```sh
+tccli get eth0
+```
+
+```json
+{
+  "outgoing": {
+    "network=0.0.0.0/0,protocol=ip": {
+      "loss": "20%",
+      "rate": "100Mbit"
+    },
+    "network=192.168.1.1/32,protocol=ip": {
+      "corrupt": "2%",
+      "rate": "32Gbit"
+    }
+  },
+  "incoming": {
+    "network=10.10.10.0/28,srcPort=80,dstPort=80,protocol=ip": {
+      "corrupt": "2%",
+      "rate": "32Gbit"
+    }
+  }
+}
+
 ```
 
 ## Enable debug of module
