@@ -23,7 +23,7 @@ commander
       throw new Error(`Iface ${iface} does not exists! Check your network interfaces.`);
     }
   })
-  .usage('tccli <operation> <iface> [options]')
+  .usage('<operation> <iface> [options]')
   .option('-d --direction [direction]', 'Rule traffic direction. Allowed outgoing or incoming.', 'outgoing',
     /(outgoing|incoming)/)
   .option('-n --network [network]', 'Network including mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/)
