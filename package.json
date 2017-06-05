@@ -1,6 +1,6 @@
 {
   "name": "tccli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "J. Victor Soto",
   "license": "MIT",
   "description": "NodeJS cli for tc-wrapper (a library for traffic control on linux)",
