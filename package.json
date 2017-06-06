@@ -1,6 +1,6 @@
 {
   "name": "tccli",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "J. Victor Soto",
   "license": "MIT",
   "description": "NodeJS cli for tc-wrapper (a library for traffic control on linux)",
@@ -24,7 +24,7 @@
     "bluebird": "^3.5.0",
     "commander": "^2.9.0",
     "debug": "^2.6.8",
-    "tc-wrapper": "^1.0.6"
+    "tc-wrapper": "^1.0.7"
   },
   "devDependencies": {
     "babel-cli": "^6.16.0",
