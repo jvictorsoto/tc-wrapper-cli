@@ -20,7 +20,7 @@ var debug = require('debug')('tc-wrapper-cli');
 var operation = void 0;
 var iface = void 0;
 
-_commander2.default.version('1.0.0').arguments('<operation> <iface>').action(function (inOperation, inIface) {
+_commander2.default.version('1.0.8').arguments('<operation> <iface>').action(function (inOperation, inIface) {
   operation = inOperation;
   if (['del', 'get', 'set', 'add'].indexOf(operation) < 0) {
     throw new Error('Operation ' + operation + ' invalid! Choose between del, get, set & add.');
@@ -30,9 +30,9 @@ _commander2.default.version('1.0.0').arguments('<operation> <iface>').action(fun
   if (_os2.default.networkInterfaces()[iface] === undefined) {
     throw new Error('Iface ' + iface + ' does not exists! Check your network interfaces.');
   }
-}).usage('<operation> <iface> [options]').option('-d --direction [direction]', 'Rule traffic direction. Allowed outgoing or incoming.', 'outgoing', /(outgoing|incoming)/).option('-n --network [network]', 'Network including mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/).option('--srcPort [port]', 'Destination port.').option('--dstPort [port]', 'Source port.').option('-p --protocol [protocol]', 'Protocol of rules. Only supported IPv4 right now.', 'ip', /ip/).option('--delay [time]', 'Delay including unit. Ex: 10ms').option('--jitter [time]', 'Delay variation including unit. Ex: 10ms').option('--loss [percentage]', 'Packet loss including unit. Ex: 5%').option('--corrupt [percentage]', 'Packet corruption including unit. Ex: 1%').option('--rate [bandwidth]', 'Bandwith limit including unit. Ex: 10Mbit').parse(process.argv);
+}).usage('<operation> <iface> [options]').option('-d --direction [direction]', 'Rule traffic direction. Allowed outgoing or incoming.', 'outgoing', /(outgoing|incoming)/).option('--srcNetwork [srcNetwork]', 'Network source mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/).option('--dstNetwork [dstNetwork]', 'Network destination mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/).option('--srcPort [port]', 'Destination port.').option('--dstPort [port]', 'Source port.').option('-p --protocol [protocol]', 'Protocol of rules. Only supported IPv4 right now.', 'ip', /ip/).option('--delay [time]', 'Delay including unit. Ex: 10ms').option('--jitter [time]', 'Delay variation including unit. Ex: 10ms').option('--loss [percentage]', 'Packet loss including unit. Ex: 5%').option('--corrupt [percentage]', 'Packet corruption including unit. Ex: 1%').option('--rate [bandwidth]', 'Bandwith limit including unit. Ex: 10Mbit').parse(process.argv);
 
-var rule = ['network=' + _commander2.default.network];
+var rule = ['srcNetwork=' + _commander2.default.srcNetwork, 'dstNetwork=' + _commander2.default.dstNetwork];
 if (_commander2.default.srcPort) {
   rule.push('srcPort=' + _commander2.default.srcPort);
 }

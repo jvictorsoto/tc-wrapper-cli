@@ -10,6 +10,10 @@ This module is installed via npm:
 npm install -g tccli
 ```
 
+## Changelog
+
+  * 1.0.8: Removed network parameter and included srcNetwork & dstNetwork paramenters
+
 ## Usage
 
 ### Help
@@ -21,7 +25,8 @@ npm install -g tccli
     -h, --help                  output usage information
     -V, --version               output the version number
     -d --direction [direction]  Rule traffic direction. Allowed outgoing or incoming.
-    -n --network [network]      Network including mask
+    --srcNetwork [network]   Network source mask
+    --dstNetwork [network]   Network destination mask
     --srcPort [port]            Destination port.
     --dstPort [port]            Source port.
     -p --protocol [protocol]    Protocol of rules. Only supported IPv4 right now.
@@ -66,7 +71,7 @@ Output will be a JSON output similar to this:
 ```json
 {
   "outgoing": {
-    "network=0.0.0.0/0,protocol=ip": {
+    "dstNetwork=0.0.0.0/0,protocol=ip": {
       "delay": "1.0ms",
       "jitter": "0.5%",
       "loss": "3%",
@@ -75,10 +80,10 @@ Output will be a JSON output similar to this:
     }
   },
   "incoming": {
-    "network=192.168.1.1/32,protocol=ip": {
+    "srcNetwork=192.168.1.1/32,protocol=ip": {
       "loss": "9%",
      },
-     "network=10.10.10.0/28,srcPort=80,protocol=ip": {
+     "srcNetwork=192.168.1.1/32,dstNetwork=10.10.10.0/28,srcPort=80,protocol=ip": {
        "rate": "100Mbit",
      }
   }
@@ -120,11 +125,11 @@ tccli set eth0 --rate 100Mbit --loss 20%
 ```
 
 ``` sh
-tccli add eth0 --network 192.168.1.1/32 --corrupt 2%
+tccli add eth0 --dstNetwork 192.168.1.1/32 --corrupt 2%
 ```
 
 ``` sh
-tccli add eth0 --network 10.10.10.0/28 --srcPort 80 --corrupt 2% --direction incoming
+tccli add eth0 --dstNetwork 10.10.10.0/28 --srcPort 80 --corrupt 2% --direction incoming
 ```
 
 ```sh
@@ -134,17 +139,17 @@ tccli get eth0
 ```json
 {
   "outgoing": {
-    "network=0.0.0.0/0,protocol=ip": {
+    "dstNetwork=0.0.0.0/0,protocol=ip": {
       "loss": "20%",
       "rate": "100Mbit"
     },
-    "network=192.168.1.1/32,protocol=ip": {
+    "dstNetwork=192.168.1.1/32,protocol=ip": {
       "corrupt": "2%",
       "rate": "32Gbit"
     }
   },
   "incoming": {
-    "network=10.10.10.0/28,srcPort=80,dstPort=80,protocol=ip": {
+    "dstNetwork=10.10.10.0/28,srcPort=80,dstPort=80,protocol=ip": {
       "corrupt": "2%",
       "rate": "32Gbit"
     }

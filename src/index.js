@@ -10,7 +10,7 @@ let operation;
 let iface;
 
 commander
-  .version('1.0.0')
+  .version('1.0.8')
   .arguments('<operation> <iface>')
   .action((inOperation, inIface) => {
     operation = inOperation;
@@ -26,7 +26,8 @@ commander
   .usage('<operation> <iface> [options]')
   .option('-d --direction [direction]', 'Rule traffic direction. Allowed outgoing or incoming.', 'outgoing',
     /(outgoing|incoming)/)
-  .option('-n --network [network]', 'Network including mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/)
+  .option('--srcNetwork [network]', 'Network source mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/)
+  .option('--dstNetwork [network]', 'Network destination mask', '0.0.0.0/0', /(\d{1,3}\.){3}\d{1,3}\/\d{1,2}/)
   .option('--srcPort [port]', 'Destination port.')
   .option('--dstPort [port]', 'Source port.')
   .option('-p --protocol [protocol]', 'Protocol of rules. Only supported IPv4 right now.', 'ip', /ip/)
@@ -37,7 +38,7 @@ commander
   .option('--rate [bandwidth]', 'Bandwith limit including unit. Ex: 10Mbit')
   .parse(process.argv);
 
-const rule = [`network=${commander.network}`];
+const rule = [`srcNetwork=${commander.srcNetwork}`, `dstNetwork=${commander.dstNetwork}`];
 if (commander.srcPort) {
   rule.push(`srcPort=${commander.srcPort}`);
 }
